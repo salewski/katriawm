@@ -372,20 +372,20 @@ client_update_title(struct Client *c)
         {
             D fprintf(stderr, __NAME_WM__": Title of client %p could not be "
                       "read from ICCCM\n", (void *)c);
-            strncpy(c->title, WM_NAME_UNKNOWN, sizeof c->title);
+            strncpy(c->title, WM_NAME_UNKNOWN, sizeof c->title - 1);
             return;
         }
     }
 
     if (tp.nitems == 0)
     {
-        strncpy(c->title, WM_NAME_UNKNOWN, sizeof c->title);
+        strncpy(c->title, WM_NAME_UNKNOWN, sizeof c->title - 1);
         return;
     }
 
     if (tp.encoding == XA_STRING)
     {
-        strncpy(c->title, (char *)tp.value, sizeof c->title);
+        strncpy(c->title, (char *)tp.value, sizeof c->title - 1);
         D fprintf(stderr, __NAME_WM__": Title of client %p read as verbatim "
                   "string\n", (void *)c);
     }
