@@ -396,7 +396,7 @@ client_update_title(struct Client *c)
         if (XmbTextPropertyToTextList(dpy, &tp, &slist, &count) >= Success &&
             count > 0 && *slist)
         {
-            strncpy(c->title, slist[0], sizeof c->title);
+            strncpy(c->title, slist[0], sizeof c->title - 1);
             XFreeStringList(slist);
             D fprintf(stderr, __NAME_WM__": Title of client %p read as "
                       "XmbText\n", (void *)c);
